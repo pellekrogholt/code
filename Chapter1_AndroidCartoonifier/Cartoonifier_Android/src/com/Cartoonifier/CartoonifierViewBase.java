@@ -141,14 +141,23 @@ public abstract class CartoonifierViewBase extends SurfaceView implements Surfac
                 mFrame = new byte [size];
                 mCamera.addCallbackBuffer(mBuffer);
 
+                
+                /* NB! 
+                 * The order matters do onPreviewStarted() before the try / catch
+                 * or we might get "E/BufferQueue(29920): [unnamed-29920-0] setBufferCount: SurfaceTexture has been abandoned!"
+                 * - full trace back: http://pastebin.com/qvZthFxu
+                 * 
+                 * based upon stackoverflow answer: http://goo.gl/7ub586  
+                 */  
+                
+                /* Notify that the preview is about to be started and deliver preview size */
+                onPreviewStarted(params.getPreviewSize().width, params.getPreviewSize().height);
+                
                 try {
                     setPreview();
                 } catch (IOException e) {
                     Log.e(TAG, "mCamera.setPreviewDisplay/setPreviewTexture fails: " + e);
                 }
-
-                /* Notify that the preview is about to be started and deliver preview size */
-                onPreviewStarted(params.getPreviewSize().width, params.getPreviewSize().height);
 
                 /* Now we can start a preview */
                 mCamera.startPreview();
