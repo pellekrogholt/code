@@ -20,13 +20,17 @@ OPENCV_INSTALL_MODULES:=on
 # Path to OpenCV.mk file, which is generated when you build OpenCV for Android.
 # include C:\OpenCV\android\build\OpenCV.mk
 # include ~/OpenCV/android/build/OpenCV.mk
-include ../includeOpenCV.mk
-ifeq ("$(wildcard $(OPENCV_MK_PATH))","")
-    #try to load OpenCV.mk from default install location
-    include $(TOOLCHAIN_PREBUILT_ROOT)/user/share/OpenCV/OpenCV.mk
-else
-    include $(OPENCV_MK_PATH)
-endif
+
+#include ../includeOpenCV.mk
+#ifeq ("$(wildcard $(OPENCV_MK_PATH))","")
+#    #try to load OpenCV.mk from default install location
+#    include $(TOOLCHAIN_PREBUILT_ROOT)/user/share/OpenCV/OpenCV.mk
+#else
+#    include $(OPENCV_MK_PATH)
+#endif
+# lets try simple apporach
+include $(HOME)/dev/opencv246-android-sdk/sdk/native/jni/OpenCV.mk
+
 
 LOCAL_MODULE    := cartoonifier
 LOCAL_LDLIBS +=  -llog -ldl

@@ -147,7 +147,7 @@ public abstract class CartoonifierViewBase extends SurfaceView implements Surfac
                  * or we might get "E/BufferQueue(29920): [unnamed-29920-0] setBufferCount: SurfaceTexture has been abandoned!"
                  * - full trace back: http://pastebin.com/qvZthFxu
                  * 
-                 * based upon stackoverflow answer: http://goo.gl/7ub586  
+                 * based upon stackoverflow.com answer: http://goo.gl/7ub586  
                  */  
                 
                 /* Notify that the preview is about to be started and deliver preview size */

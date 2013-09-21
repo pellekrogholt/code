@@ -2,6 +2,11 @@ cmake_minimum_required (VERSION 2.6)
 
 PROJECT(Cartoonifier_Desktop)
 
+# debug or relase:
+set(CMAKE_BUILD_TYPE Debug)
+#set(CMAKE_BUILD_TYPE Release)
+
+
 # Requires OpenCV
 FIND_PACKAGE( OpenCV REQUIRED )
 
